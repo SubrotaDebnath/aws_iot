@@ -47,6 +47,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  lint: ^1.8.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -60,9 +61,10 @@ flutter:
   uses-material-design: true
 
   assets:
-      - assets/certs/RootCA.pem
-      - assets/certs/DeviceCertificate.crt
-      - assets/certs/Private.key
+      - assets/certs/
+#      - assets/certs/RootCA.pem
+#      - assets/certs/DeviceCertificate.crt
+#      - assets/certs/Private.key
 
 
   # To add assets to your application, add an assets section, like this:
