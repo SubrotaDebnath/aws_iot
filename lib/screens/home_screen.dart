@@ -9,8 +9,7 @@ import 'dart:convert';
 // final mqttReceivedMessages = snapshot.data as List<MqttReceivedMessage<MqttMessage?>>?;
 // final recMess = mqttReceivedMessages![0].payload as MqttPublishMessage;
 
-// const awsDataEndpoint = 'abzdpvuwkaq5j-ats.iot.ap-southeast-1.amazonaws.com';
-//const awsDataEndpoint = 'abzdpvuwkaq5j-ats.iot.ap-southeast-1.amazonaws.com';
+
 const awsDataEndpoint = 'abzdpvuwkaq5j-ats.iot.ap-southeast-1.amazonaws.com';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +20,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // final MqttServerClient client = MqttServerClient.withPort(awsDataEndpoint, 'ss-1994',8883,maxConnectionAttempts: 5);
   final MqttServerClient client = MqttServerClient(awsDataEndpoint, '');
   bool isConnected = false;
   String statusText = "Status Text";
@@ -138,7 +136,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   final recMess =
                       mqttReceivedMessages![0].payload as MqttPublishMessage;
 
-                  // img.Image jpegImage = img.decodeJpg(recMess.payload.message!);
                   return isConnected
                       ? Text(utf8.decode(recMess.payload.message).toString())
                       : Text('');
@@ -190,13 +187,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<bool> mqttConnect(String clientId) async {
     setStatus("Connecting MQTT Broker..........");
 
-    // After adding your certificates to the pubspec.yaml, you can use Security Context.
-
-    // ByteData rootCA = await rootBundle.load('assets/certs/AmazonRootCA1.pem');
-    // ByteData deviceCert = await rootBundle.load(
-    //     'assets/certs/cac3309015bb5acd72c59e9c7adc8f5c96c0cb4ce67aec48898e847f63757707-certificate.pem.crt');
-    // ByteData privateKey = await rootBundle.load(
-    //     'assets/certs/cac3309015bb5acd72c59e9c7adc8f5c96c0cb4ce67aec48898e847f63757707-private.pem.key');
 
     ByteData rootCA = await rootBundle.load('assets/certs/RootCA.pem');
     ByteData deviceCert =
@@ -230,7 +220,6 @@ class _HomeScreenState extends State<HomeScreen> {
     print(
         '>>>>>>>>>>>>>>>>>>>>>>>>>Connection message>>>>>>>>>>>>>>>>>>>>: $connMess');
 
-    //await client.connect();
 
     try {
       await client.connect();
