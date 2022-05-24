@@ -10,7 +10,7 @@ import 'dart:convert';
 // final recMess = mqttReceivedMessages![0].payload as MqttPublishMessage;
 
 
-const awsDataEndpoint = 'abzdpvuwkaq5j-ats.iot.ap-southeast-1.amazonaws.com';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final MqttServerClient client = MqttServerClient(awsDataEndpoint, '');
   bool isConnected = false;
   String statusText = "Status Text";
-  final s = 20000000;
 
   TextEditingController topicController =
       TextEditingController(text: 'things/FlutterTest');
@@ -238,6 +237,10 @@ class _HomeScreenState extends State<HomeScreen> {
     final topic = topicController.text;
     // const topic = 'ESP32SIM800L-Test/ESP32SIM800L-Test-policy';
     client.subscribe(topic, MqttQos.atMostOnce);
+    client.subscribe('s', MqttQos.atMostOnce);
+    client.subscribe('ss', MqttQos.atMostOnce);
+    client.subscribe('sss', MqttQos.atMostOnce);
+
 
     return true;
   }
