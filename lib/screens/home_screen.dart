@@ -274,8 +274,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         });
                                       }
 
-                                      print(
+                                      if (kDebugMode) {
+                                        print(
                                           '\n........................Subscription Response: ${subRes.toString()}..........................\n');
+                                      }
                                       // onPublishButtonPressed(
                                       //   topic: topicController.text,
                                       //   payload: topicController.text.trim(),
@@ -357,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      primary: Colors.teal),
+                                      backgroundColor: Colors.teal),
                                   child: const Text('Publish'),
                                 ),
                                 const SizedBox(
@@ -504,7 +506,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               } else {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      vertical: 24.0, horizontal: 8),
+                                      vertical: 8.0, horizontal: 8),
                                   child: Center(
                                     child: Text(
                                       'Connection Status: $isConnected',
@@ -534,7 +536,7 @@ class _HomeScreenState extends State<HomeScreen> {
       blur: 0,
       dialogTransitionType: DialogTransitionType.Shrink,
       dismissable: false,
-      title: const Text('title'),
+      title: const Text('title'), message: null,
     );
     progressDialog.setLoadingWidget(
       const CircularProgressIndicator(
