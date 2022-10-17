@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<String> items = [
     'ESP32SIM800L-Test',
+    'Your-Shop',
   ];
   String? selectedValue;
 
@@ -160,6 +161,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 _disconnect();
+                                setState(() {
+                                  isSubscribed = false;
+                                });
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.red),
@@ -381,15 +385,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                   children: [
                                     ElevatedButton(
                                       onPressed: () {
-                                        onPublishButtonPressed(
-                                          topic: pubTopic,
-                                          payload: '{"wash_type": "Pause"}',
-                                        );
-                                        setState(() {
-                                          mess = '';
-                                          pubReqMessage =
-                                              '{"wash_type": "Pause"}';
-                                        });
+                                        if (subTopic.trim().isNotEmpty) {
+                                          onPublishButtonPressed(
+                                            topic: pubTopic,
+                                            payload: '{"wash_type": "Pause"}',
+                                          );
+
+                                          setState(() {
+                                            mess = '';
+                                            pubReqMessage =
+                                            '{"wash_type": "Pause"}';
+                                          });
+                                        } else {
+                                          const snackBar = SnackBar(
+                                            content: Text('Subscribe first.'),
+                                            backgroundColor: Colors.teal,
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        }
+
+
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
@@ -397,16 +413,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-                                        onPublishButtonPressed(
-                                          topic: pubTopic,
-                                          payload:
-                                              '{"detailed_status": "detailed_status"}',
-                                        );
-                                        setState(() {
-                                          mess = '';
-                                          pubReqMessage =
-                                              '{"detailed_status": "detailed_status"}';
-                                        });
+
+                                        if (subTopic.trim().isNotEmpty) {
+
+                                          onPublishButtonPressed(
+                                            topic: pubTopic,
+                                            payload:
+                                            '{"detailed_status": "detailed_status"}',
+                                          );
+                                          setState(() {
+                                            mess = '';
+                                            pubReqMessage =
+                                            '{"detailed_status": "detailed_status"}';
+                                          });
+                                        } else {
+                                          const snackBar = SnackBar(
+                                            content: Text('Subscribe first.'),
+                                            backgroundColor: Colors.teal,
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        }
+
+
+
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
@@ -414,16 +444,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-                                        onPublishButtonPressed(
-                                          topic: pubTopic,
-                                          payload: '{"status": "Status"}',
-                                        );
 
-                                        setState(() {
-                                          mess = '';
-                                          pubReqMessage =
-                                              '{"status": "Status"}';
-                                        });
+                                        if (subTopic.trim().isNotEmpty) {
+                                          onPublishButtonPressed(
+                                            topic: pubTopic,
+                                            payload: '{"status": "Status"}',
+                                          );
+
+                                          setState(() {
+                                            mess = '';
+                                            pubReqMessage =
+                                            '{"status": "Status"}';
+                                          });
+                                        } else {
+                                          const snackBar = SnackBar(
+                                            content: Text('Subscribe first.'),
+                                            backgroundColor: Colors.teal,
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        }
+
+
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
@@ -431,16 +473,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-                                        onPublishButtonPressed(
-                                          topic: pubTopic,
-                                          payload: '{"status": "Restart"}',
-                                        );
 
-                                        setState(() {
-                                          mess = '';
-                                          pubReqMessage =
-                                              '{"status": "Restart"}';
-                                        });
+
+                                        if (subTopic.trim().isNotEmpty) {
+                                          onPublishButtonPressed(
+                                            topic: pubTopic,
+                                            payload: '{"status": "Restart"}',
+                                          );
+
+                                          setState(() {
+                                            mess = '';
+                                            pubReqMessage =
+                                            '{"status": "Restart"}';
+                                          });
+                                        } else {
+                                          const snackBar = SnackBar(
+                                            content: Text('Subscribe first.'),
+                                            backgroundColor: Colors.teal,
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        }
+
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
