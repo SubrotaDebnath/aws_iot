@@ -7,6 +7,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 import 'dart:convert';
 import '../config.dart';
 
@@ -605,7 +606,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     progressDialog.show();
 
-    isConnected = await mqttConnect('ss1994');
+    String deviceId = await PlatformDeviceId.getDeviceId?? DateTime.now().toString();
+    isConnected = await mqttConnect(deviceId);
 
     progressDialog.dismiss();
   }

@@ -14,6 +14,7 @@ dependencies:
   ndialog: ^4.1.1
   dropdown_button2: ^1.6.3
   loader_overlay: ^2.1.0
+  platform_device_id: ^1.0.1
 
 dev_dependencies:
   flutter_test:
