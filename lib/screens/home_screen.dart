@@ -12,7 +12,7 @@ import 'dart:convert';
 import '../config.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -72,8 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton2(
                                 isExpanded: true,
-                                hint: Row(
-                                  children: const [
+                                hint: const Row(
+                                  children: [
                                     Icon(
                                       Icons.list,
                                       size: 16,
