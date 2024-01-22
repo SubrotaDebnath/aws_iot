@@ -115,39 +115,49 @@ class _HomeScreenState extends State<HomeScreen> {
                                     selectedValue = value as String;
                                   });
                                 },
-                                icon: const Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                ),
-                                iconSize: 14,
-                                iconEnabledColor: Colors.yellow,
-                                iconDisabledColor: Colors.grey,
-                                buttonHeight: 50,
-                                buttonWidth: MediaQuery.of(context).size.width*.9,
-                                buttonPadding:
-                                    const EdgeInsets.only(left: 14, right: 14),
-                                buttonDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(14),
-                                  border: Border.all(
-                                    color: Colors.black26,
+                                iconStyleData: const IconStyleData(
+                                  icon: Icon(
+                                    Icons.arrow_forward_ios_outlined,
                                   ),
-                                  color: Colors.redAccent,
+                                  iconSize: 14,
+                                  iconEnabledColor: Colors.yellow,
+                                  iconDisabledColor: Colors.grey,
                                 ),
-                                buttonElevation: 2,
-                                itemHeight: 40,
-                                itemPadding:
-                                    const EdgeInsets.only(left: 14, right: 14),
-                                dropdownMaxHeight: 200,
-                                dropdownWidth:  MediaQuery.of(context).size.width*.9,
-                                dropdownPadding: null,
-                                dropdownDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(14),
-                                  color: Colors.orange,
+
+                                buttonStyleData: ButtonStyleData(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width * .9,
+                                  padding: const EdgeInsets.only(
+                                      left: 14, right: 14),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    border: Border.all(
+                                      color: Colors.black26,
+                                    ),
+                                    color: Colors.redAccent,
+                                  ),
+                                  elevation: 2,
                                 ),
-                                dropdownElevation: 8,
-                                scrollbarRadius: const Radius.circular(40),
-                                scrollbarThickness: 6,
-                                scrollbarAlwaysShow: true,
-                                offset: const Offset(0, 0),
+                                menuItemStyleData: const MenuItemStyleData(
+                                  height: 40,
+                                  padding: EdgeInsets.only(left: 14, right: 14),
+                                ),
+
+                                dropdownStyleData: DropdownStyleData(
+                                  maxHeight: 200,
+                                  width: MediaQuery.of(context).size.width * .9,
+                                  padding: null,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    color: Colors.orange,
+                                  ),
+                                  elevation: 8,
+                                ),
+
+                                // scrollbarRadius: const Radius.circular(40),
+                                // scrollbarThickness: 6,
+                                // scrollbarAlwaysShow: true,
+                                // offset: const Offset(0, 0),
                               ),
                             ),
                           ),
@@ -258,12 +268,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                           "${topicController.text.trim()}/sub";
                                       // final subRes = subscribe(topic: subTopic);
                                       context.loaderOverlay.show(
-                                          widget: Container(
-                                        padding: const EdgeInsets.all(16),
-                                        child: const Center(
-                                          child: Text('Subscribing...'),
-                                        ),
-                                      ));
+                                          widgetBuilder: (_) {
+                                        return Container(
+                                          padding: const EdgeInsets.all(16),
+                                          child: const Center(
+                                            child: Text('Subscribing...'),
+                                          ),
+                                        );
+                                      });
                                       final subRes = client.subscribe(
                                           subTopic, MqttQos.atMostOnce);
 
@@ -281,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                       if (kDebugMode) {
                                         print(
-                                          '\n........................Subscription Response: ${subRes.toString()}..........................\n');
+                                            '\n........................Subscription Response: ${subRes.toString()}..........................\n');
                                       }
                                       // onPublishButtonPressed(
                                       //   topic: topicController.text,
@@ -395,7 +407,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           setState(() {
                                             mess = '';
                                             pubReqMessage =
-                                            '{"wash_type": "Pause"}';
+                                                '{"wash_type": "Pause"}';
                                           });
                                         } else {
                                           const snackBar = SnackBar(
@@ -405,8 +417,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(snackBar);
                                         }
-
-
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
@@ -414,18 +424,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-
                                         if (subTopic.trim().isNotEmpty) {
-
                                           onPublishButtonPressed(
                                             topic: pubTopic,
                                             payload:
-                                            '{"detailed_status": "detailed_status"}',
+                                                '{"detailed_status": "detailed_status"}',
                                           );
                                           setState(() {
                                             mess = '';
                                             pubReqMessage =
-                                            '{"detailed_status": "detailed_status"}';
+                                                '{"detailed_status": "detailed_status"}';
                                           });
                                         } else {
                                           const snackBar = SnackBar(
@@ -435,9 +443,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(snackBar);
                                         }
-
-
-
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
@@ -445,7 +450,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-
                                         if (subTopic.trim().isNotEmpty) {
                                           onPublishButtonPressed(
                                             topic: pubTopic,
@@ -455,7 +459,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           setState(() {
                                             mess = '';
                                             pubReqMessage =
-                                            '{"status": "Status"}';
+                                                '{"status": "Status"}';
                                           });
                                         } else {
                                           const snackBar = SnackBar(
@@ -465,8 +469,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(snackBar);
                                         }
-
-
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
@@ -474,8 +476,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-
-
                                         if (subTopic.trim().isNotEmpty) {
                                           onPublishButtonPressed(
                                             topic: pubTopic,
@@ -485,7 +485,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           setState(() {
                                             mess = '';
                                             pubReqMessage =
-                                            '{"status": "Restart"}';
+                                                '{"status": "Restart"}';
                                           });
                                         } else {
                                           const snackBar = SnackBar(
@@ -495,7 +495,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(snackBar);
                                         }
-
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
@@ -591,7 +590,8 @@ class _HomeScreenState extends State<HomeScreen> {
       blur: 0,
       dialogTransitionType: DialogTransitionType.Shrink,
       dismissable: false,
-      title: const Text('title'), message: null,
+      title: const Text('title'),
+      message: null,
     );
     progressDialog.setLoadingWidget(
       const CircularProgressIndicator(
@@ -606,7 +606,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     progressDialog.show();
 
-    String deviceId = await PlatformDeviceId.getDeviceId?? DateTime.now().toString();
+    String deviceId =
+        await PlatformDeviceId.getDeviceId ?? DateTime.now().toString();
     isConnected = await mqttConnect(deviceId);
 
     progressDialog.dismiss();
