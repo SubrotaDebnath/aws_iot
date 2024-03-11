@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<String> items = [
     'ESP32SIM800L-Test',
     'Your-Shop',
+    'Your-Locker',
   ];
   String? selectedValue;
 
